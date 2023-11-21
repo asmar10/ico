@@ -8,7 +8,7 @@ const CountDownTwo = () => {
   const { currentStage, preSaleStartTime, publicSaleStartTime } =
     useContext(IcoContext);
 
-  console.log(preSaleStartTime, publicSaleStartTime);
+  // console.log(preSaleStartTime, publicSaleStartTime);
 
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
@@ -54,7 +54,13 @@ const CountDownTwo = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="countdown-wrap">
-              <h2 className="title">Stage {currentStage} will End In..</h2>
+              <h2 className="title">
+                {currentStage && currentStage == 4
+                  ? `Sale Ended`
+                  : currentStage >= 1
+                  ? `Stage ${currentStage && currentStage} will End In..`
+                  : "Sale Not started"}
+              </h2>
               <div id="countdown-gampang"></div>
 
               <div className="custom-countdown-two">

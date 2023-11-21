@@ -104,7 +104,7 @@ const ConnectWallet = (props) => {
                         alt="Logo"
                         class="button__logo"
                       />
-                      <span class="button__text">Metamask 2</span>
+                      <span class="button__text">Metamask</span>
                     </button>
                   </a>
                 </>

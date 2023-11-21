@@ -86,7 +86,8 @@ export const IcoProvider = ({ children }) => {
     const [difference, setDifference] = useState(0)
     const [isWhitelisted, setIsWhitelisted] = useState(false)
     const [referralCode, setReferralCode] = useState()
-    const [isMobile, setIsMobile] = useState(false);
+    const [isStarted, setIsStarted] = useState(false);
+
 
 
 
@@ -137,7 +138,6 @@ export const IcoProvider = ({ children }) => {
         }
     };
 
-
     const isWalletConnected = async () => {
         try {
             if (ethereum && ethereum) {
@@ -168,7 +168,7 @@ export const IcoProvider = ({ children }) => {
 
                 toast.error("Please Install Metamask", {
                     position: "top-center",
-                    autoClose: 5000,
+                    autoClose: 3000,
                     hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -353,17 +353,21 @@ export const IcoProvider = ({ children }) => {
             const PublicsaleMinted = parseInt(Pum1)
             const PublicsaleAllocation = parseInt(Pua1)
 
-
+            console.log(temp3)
             setSeedSaleStartTime(parseInt(temp1))
             setPreSaleStartTime(parseInt(temp2))
             setPublicSaleStartTime(parseInt(temp3))
             // console.log(currentTime, temp1, temp2, seedMinted, seedAllocation, "Cc")
             if (temp1 == 0) {
+                // setCurrentStage(0)
+                setIsStarted(false)
+
                 setCurrentStageMinted(0)
                 setCurrentStageAllocation(0)
                 setStagePrice(0)
             }
             else if (((currentTime >= temp1 && currentTime < temp2) && seedMinted < seedAllocation)) {
+                setIsStarted(true)
 
                 setCurrentStage(1)
                 setCurrentStageMinted(seedMinted)
@@ -373,21 +377,27 @@ export const IcoProvider = ({ children }) => {
             }
             else if (((currentTime >= temp2 && currentTime < temp3) && PresaleMinted < PresaleAllocation) || (seedMinted == seedAllocation && PresaleMinted < PresaleAllocation && currentTime < temp3)) {
                 setCurrentStage(2)
+                setIsStarted(true)
+
                 setCurrentStageMinted(PresaleMinted)
                 setCurrentStageAllocation(PresaleAllocation)
                 setStagePrice(PresalePrice)
             }
             else if (((currentTime >= temp3 && currentTime < temp3 + 1296000) && PublicsaleMinted < PublicsaleAllocation) || (PresaleMinted == PresaleAllocation && PublicsaleMinted < PublicsaleAllocation && currentTime < temp3 + 1296000)) {
                 setCurrentStage(3)
+                setIsStarted(true)
+
                 setCurrentStageMinted(PublicsaleMinted)
                 setCurrentStageAllocation(PublicsaleAllocation)
                 setStagePrice(PublicsalePrice)
             }
-            else {
+            else if (currentTime > temp3 + 1296000) {
                 // console.log("All Stages Finished")
+                setCurrentStage(4)
+                setIsStarted(false)
             }
         } catch (err) {
-            // console.log(err)
+            console.log(err)
             // throw new Error(err)
         }
     }
@@ -396,13 +406,14 @@ export const IcoProvider = ({ children }) => {
 
         (async () => {
             await getCurrentStage();
+            await isWalletConnected();
+
             if (currentAccount) {
                 checkIfWhitelisted()
                 checkIfReferralExists()
             }
         })();
 
-        isWalletConnected();
 
     }, [currentAccount]);
 
@@ -417,7 +428,7 @@ export const IcoProvider = ({ children }) => {
 
 
     return (
-        <IcoContext.Provider value={{ setCurrentAccount, generateReferralCode, isWhitelisted, referralCode, isLoading, difference, seedSaleStartTime, preSaleStartTime, publicSaleStartTime, currentStageAllocation, currentStageMinted, stagePrice, currentStage, connectWallet, currentAccount, isWalletConnected, buyTokens }}>
+        <IcoContext.Provider value={{ isStarted, setCurrentAccount, generateReferralCode, isWhitelisted, referralCode, isLoading, difference, seedSaleStartTime, preSaleStartTime, publicSaleStartTime, currentStageAllocation, currentStageMinted, stagePrice, currentStage, connectWallet, currentAccount, isWalletConnected, buyTokens }}>
             {children}
         </IcoContext.Provider>
     )

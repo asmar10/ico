@@ -21,7 +21,8 @@ const tabs = [
 ];
 
 const BuyNow = (props) => {
-  const { buyTokens, stagePrice, isLoading } = useContext(IcoContext);
+  const { buyTokens, stagePrice, isLoading, isStarted } =
+    useContext(IcoContext);
 
   let price = stagePrice && ethers.utils.formatEther(`${stagePrice}`);
 
@@ -386,7 +387,7 @@ const BuyNow = (props) => {
           <Modal.Footer>
             <div className="header-btn">
               <button
-                disabled={isLoading}
+                disabled={isLoading || !isStarted}
                 className="btn btn-two pu"
                 onClick={() => {
                   handleBuy(activeTab, hasReferral);
