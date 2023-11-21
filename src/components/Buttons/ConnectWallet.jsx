@@ -94,17 +94,7 @@ const ConnectWallet = (props) => {
           </Modal.Header>
           <Modal.Body>
             <>
-              {isMobile !== true && !window.ethereum ? (
-                <button class="button btn btn-two" onClick={connectWallet}>
-                  <img
-                    src="/images/icons/MetaMask_Fox.png"
-                    // src="/images/icons/usdt.png"
-                    alt="Logo"
-                    class="button__logo"
-                  />
-                  <span class="button__text">Metamask</span>
-                </button>
-              ) : (
+              {isMobile == true && !window.ethereum ? (
                 <>
                   <a href={metamaskAppDeepLink}>
                     <button className="button btn btn-two">
@@ -118,6 +108,16 @@ const ConnectWallet = (props) => {
                     </button>
                   </a>
                 </>
+              ) : (
+                <button class="button btn btn-two" onClick={connectWallet}>
+                  <img
+                    src="/images/icons/MetaMask_Fox.png"
+                    // src="/images/icons/usdt.png"
+                    alt="Logo"
+                    class="button__logo"
+                  />
+                  <span class="button__text">Metamask</span>
+                </button>
               )}
 
               <button class="button btn btn-two" onClick={handleWalletConnect}>
