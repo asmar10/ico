@@ -94,7 +94,7 @@ const ConnectWallet = (props) => {
           </Modal.Header>
           <Modal.Body>
             <>
-              {isMobile !== true ? (
+              {isMobile !== true && !window.ethereum ? (
                 <button class="button btn btn-two" onClick={connectWallet}>
                   <img
                     src="/images/icons/MetaMask_Fox.png"
