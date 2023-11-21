@@ -78,7 +78,7 @@ const BannerTwo = () => {
                       />
                     </div>
                     <h4 className="target-banner title text-uppercase">
-                      {raised.toFixed(2)}% Target Raised
+                      {raised.toFixed(2)}% Raised
                       <span
                         style={{
                           color: `${colorScales[currentStage]}`,

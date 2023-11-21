@@ -119,7 +119,15 @@ const HeaderTwo = () => {
               <div className="mobile-nav-toggler">
                 <i className="fas fa-bars"></i>
               </div>
-
+              <div className="mobile-nav-btn">
+                {currentAccount == null ? (
+                  <ConnectWallet />
+                ) : (
+                  <div className="header-btn">
+                    <BuyNow label={"Buy Now"} />
+                  </div>
+                )}
+              </div>
               <div className="menu-wrap">
                 <nav className="menu-nav">
                   <div className="logo">
@@ -217,7 +225,7 @@ const HeaderTwo = () => {
                         <>
                           <li className="header-lang"></li>
 
-                          <li className="header-btn">
+                          <li className="header-btn desktop-only">
                             {/* <BuyNow label={"Buy Now"} /> */}
                             {/* <button
                               className="btn"
@@ -256,6 +264,7 @@ const HeaderTwo = () => {
               </div>
 
               {/* <!-- Mobile Menu  --> */}
+
               <div className="mobile-menu">
                 <nav className="menu-box">
                   <div className="close-btn">
@@ -270,6 +279,20 @@ const HeaderTwo = () => {
                       />
                     </Link>
                   </div>
+
+                  {currentAccount !== null && (
+                    <div
+                      className="mobile-address"
+                      style={{ marginLeft: "15px" }}
+                    >
+                      {currentAccount?.slice(0, 5)}...
+                      {currentAccount?.slice(currentAccount?.length - 4)}
+                      <br />
+                      <p>
+                        <GenerateReferral label={"Referral Code"} />
+                      </p>
+                    </div>
+                  )}
 
                   <div className="menu-outer">
                     {/* <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--> */}

@@ -1,13 +1,9 @@
-exports.rpc = "http://127.0.0.1:8545/" //Production: CHANGE
+exports.rpc = "http://127.0.0.1:8545/"
 
-// exports.icoAddress = "0x281AbB20f3694f7a9cAc26ec5c04B18638e17B6A" //Production: CHANGE
-// exports.whitelistAddress = "0x401D177568b38D87088A35c1b706f3ba218Cb7B1" //Production: CHANGE
-// exports.referralAddress = "0x637D23ab1E967BB59965EbA1f6F7e0F8A11cDAf9" //Production: CHANGE
-
-exports.icoAddress = "0x930a25735be0fa22c1f8a9f8526efcc789e6fe15" //Production: CHANGE
-exports.whitelistAddress = "0x9512Cd7C66949F49A87Ccc47680242FEC30B9D3f" //Production: CHANGE
-exports.referralAddress = "0x1e9641C9D6be5E088692657307A60d2923e50081" //Production: CHANGE
-
+exports.metamaskAppDeepLink = "https://metamask.app.link/dapp/crnt-ico.vercel.app/";
+exports.icoAddress = "0x930a25735be0fa22c1f8a9f8526efcc789e6fe15"
+exports.whitelistAddress = "0x9512Cd7C66949F49A87Ccc47680242FEC30B9D3f"
+exports.referralAddress = "0x1e9641C9D6be5E088692657307A60d2923e50081"
 
 exports.usdtAddress = "0x55d398326f99059ff775485246999027b3197955"
 exports.busdAddress = "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56"

@@ -12,14 +12,17 @@ import "./assets/css/responsive.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import { IcoProvider } from "./contexts/context";
 // import { ToastContainer } from "react-bootstrap";
+import { MetaMaskProvider } from '@metamask/sdk-react';
 
 
 ReactDOM.render(
+
   <IcoProvider>
-    {/* <ToastContainer /> */}
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </IcoProvider>,
+  </IcoProvider>
+
+  ,
   document.getElementById("root")
 );

@@ -624,6 +624,9 @@ label {
   border-color: #564dca;
   color: #fff;
 }
+.mobile-nav-btn .header-btn {
+  font-size: 11;
+}
 /* .menu-style-two .header-btn .btn:hover {
   background: var(--dark);
 }
@@ -881,6 +884,17 @@ label {
   margin-top: 3px;
 }
 
+.menu-area .mobile-nav-btn {
+  position: relative;
+  float: right;
+  font-size: 30px;
+  cursor: pointer;
+  line-height: 1;
+  color: #000;
+  /* display: none; */
+  margin-top: 3px;
+}
+
 /* 4. Banner */
 .banner-bg {
   background-image: url(../img/banner/banner_bg.jpg);
@@ -979,7 +993,7 @@ label {
   background: #12d176;
 }
 .banner-progress-wrap {
-  margin: 0 150px 70px;
+  margin: 0 150px 100px;
 }
 .banner-progress-wrap .progress {
   height: 6px;
@@ -3704,9 +3718,11 @@ label {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: rgba(0, 0, 0, 0.5); */
   z-index: 9999;
   pointer-events: none;
+  background: #00c4f4;
+  border-radius: 5px;
 }
 .button.btn.btn-two {
   padding: 10px 20px;

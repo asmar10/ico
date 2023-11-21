@@ -394,7 +394,16 @@
     font-size: 14px;
   }
 }
-
+@media (min-width: 769px) {
+  .mobile-nav-btn {
+    display: none; /* Hide the element on desktop */
+  }
+}
+@media (min-width: 769px) {
+  .desktop-only {
+    display: block; /* Show the element on desktop */
+  }
+}
 /* Large devices (desktops, 992px and up) */
 @media (max-width: 991.98px) {
   .container,
@@ -419,6 +428,14 @@
   .menu-area .mobile-nav-toggler {
     color: #fff;
     margin-top: 17px;
+  }
+  .menu-area .mobile-nav-btn {
+    display: block;
+  }
+  .menu-area .mobile-nav-btn {
+    color: #fff;
+    /* margin-top: 17px; */
+    margin-right: 10px;
   }
   .banner-content .title {
     font-size: 44px;

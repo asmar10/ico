@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@metamask/sdk-react": "^0.12.1",
     "@wagmi/connectors": "^2.2.0",
     "@web3modal/ethereum": "2.4.7",
     "@web3modal/react": "2.4.7",
@@ -13,7 +14,7 @@
     "ethers": "^5.7.2",
     "jquery": "^3.6.3",
     "moment": "^2.29.4",
-    "react": "^18.2.0",
+    "react": "^16.8.0 || ^17.0.0-rc.1 || ^18.2.0",
     "react-animate-on-scroll": "^2.1.7",
     "react-bootstrap": "^2.7.4",
     "react-countdown": "^2.3.5",

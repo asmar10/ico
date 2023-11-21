@@ -11,7 +11,7 @@ import { useWeb3Modal } from "@web3modal/react";
 import LoadingOverlay from "react-loading-overlay";
 
 import "react-toastify/dist/ReactToastify.css";
-import { icoAbi, icoAddress } from "../../utils/constants";
+import { icoAbi, icoAddress, metamaskAppDeepLink } from "../../utils/constants";
 import { useEffect } from "react";
 import { useAccount } from "wagmi";
 
@@ -20,6 +20,15 @@ const ConnectWallet = (props) => {
     useContext(IcoContext);
   const { isOpen, open, close, setDefaultChain } = useWeb3Modal();
   const { address, isConnecting, isDisconnected, isConnected } = useAccount();
+  const [isMobile, setIsMobile] = useState(false);
+
+  function isMobileDevice() {
+    return "ontouchstart" in window || "onmsgesturechange" in window;
+  }
+
+  useEffect(() => {
+    setIsMobile(isMobileDevice());
+  }, []);
 
   const [show, setShow] = useState(false);
 
@@ -85,15 +94,31 @@ const ConnectWallet = (props) => {
           </Modal.Header>
           <Modal.Body>
             <>
-              <button class="button btn btn-two" onClick={connectWallet}>
-                <img
-                  src="/images/icons/MetaMask_Fox.png"
-                  // src="/images/icons/usdt.png"
-                  alt="Logo"
-                  class="button__logo"
-                />
-                <span class="button__text">Metamask</span>
-              </button>
+              {isMobile !== true ? (
+                <button class="button btn btn-two" onClick={connectWallet}>
+                  <img
+                    src="/images/icons/MetaMask_Fox.png"
+                    // src="/images/icons/usdt.png"
+                    alt="Logo"
+                    class="button__logo"
+                  />
+                  <span class="button__text">Metamask</span>
+                </button>
+              ) : (
+                <>
+                  <a href={metamaskAppDeepLink}>
+                    <button className="button btn btn-two">
+                      <img
+                        src="/images/icons/MetaMask_Fox.png"
+                        // src="/images/icons/usdt.png"
+                        alt="Logo"
+                        class="button__logo"
+                      />
+                      <span class="button__text">Metamask 2</span>
+                    </button>
+                  </a>
+                </>
+              )}
 
               <button class="button btn btn-two" onClick={handleWalletConnect}>
                 <img

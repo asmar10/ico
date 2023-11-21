@@ -2,6 +2,7 @@ import { useState, useEffect, createContext } from "react";
 import { icoAddress, icoAbi, usdAbi, rpc, whitelistAddress, whitelistAbi, referralAbi, referralAddress } from "../utils/constants";
 import { useWeb3Modal } from "@web3modal/react";
 import { ToastContainer, toast } from "react-toastify";
+import { useSDK } from "@metamask/sdk-react";
 
 
 const ethers = require("ethers");
@@ -71,6 +72,7 @@ const { ethereum } = window;
 
 
 export const IcoProvider = ({ children }) => {
+    const { sdk, connected, connecting, provider, chainId } = useSDK();
 
     const [isLoading, setLoading] = useState(false);
     const [currentAccount, setCurrentAccount] = useState(null);
@@ -87,10 +89,16 @@ export const IcoProvider = ({ children }) => {
     const [isMobile, setIsMobile] = useState(false);
 
 
+
     const connectWallet = async () => {
         try {
+
             if (ethereum) {
                 setLoading(true);
+                const temp = await ethereum?.request({
+                    method: "eth_requestAccounts",
+                });
+
                 const chainId = await ethereum?.request({
                     method: "eth_chainId",
                 });
@@ -105,27 +113,23 @@ export const IcoProvider = ({ children }) => {
                         params: [chainParams],
                     });
                 }
-
-                const temp = await ethereum?.request({
-                    method: "eth_requestAccounts",
-                });
-
                 setLoading(false);
                 setCurrentAccount(temp[0]);
             } else {
                 // Redirect user to MetaMask app on App Store or Google Play Store
-                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-                const isAndroid = /Android/.test(navigator.userAgent);
+                toast.error("Please Install Metamask", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                })
 
-                if (isIOS) {
-                    window.location.href = "https://apps.apple.com/us/app/metamask/id1438144202";
-                } else if (isAndroid) {
-                    window.location.href = "https://play.google.com/store/apps/details?id=io.metamask";
-                } else {
-                    // Redirect to the general MetaMask download page for other platforms
-                    window.location.href = "https://metamask.io/download.html";
-                }
+
             }
+
         } catch (err) {
             // Handle errors here
             setLoading(false);
@@ -133,49 +137,50 @@ export const IcoProvider = ({ children }) => {
         }
     };
 
+
     const isWalletConnected = async () => {
         try {
             if (ethereum && ethereum) {
-                const chainId = await ethereum?.request({
-                    method: "eth_chainId",
-                });
 
                 const temp = await ethereum?.request({
                     method: "eth_accounts",
                 });
-                if (chainId !== "0x7a69") {//Production CHANGE 0x38 BNB
-                    const chainParams = {
-                        chainId: "0x7a69",//Production CHANGE 0x38 BNB
-                    };
 
-                    await ethereum?.request({
-                        method: "wallet_switchEthereumChain",
-                        params: [chainParams],
+                if (temp.length !== 0) {
+                    const chainId = await ethereum?.request({
+                        method: "eth_chainId",
                     });
-                }
-                if (temp.length == 0) {
-                    setCurrentAccount(null);
-                } else {
 
+                    if (chainId !== "0x7a69") {//Production CHANGE 0x38 BNB
+                        const chainParams = {
+                            chainId: "0x7a69",//Production CHANGE 0x38 BNB
+                        };
+
+                        await ethereum?.request({
+                            method: "wallet_switchEthereumChain",
+                            params: [chainParams],
+                        });
+                    }
                     setCurrentAccount(temp[0]);
                 }
             }
             else {
-                return (window.innerWidth > 768 &&
-                    toast.error("Connect Wallet", {
-                        position: "top-center",
-                        autoClose: 5000,
-                        hideProgressBar: true,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                    }))
+
+                toast.error("Please Install Metamask", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                })
+
                 // alert("Please Install MetaMask")
             }
         } catch (err) {
 
-            throw new Error("No ethereum object.");
+            console.log("No ethereum object.");
 
         }
     }

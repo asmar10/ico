@@ -9,6 +9,7 @@ import LoadingOverlay from "react-loading-overlay";
 import { IcoContext } from "./contexts/context";
 import { useContext } from "react";
 
+
 import { ProjectId } from "./utils/constants";
 
 import {
@@ -54,15 +55,18 @@ function App() {
 
   return (
     <>
-      <WagmiConfig config={wagmiConfig}>
-        <Routes>
-          {/* <Route path="/home-two" element={<Home />} /> */}
-          <Route path="/" element={<HomeTwo />} />
-          <Route path="terms-and-conditions" element={<Terms />} />
-          {/* <Route path="blog-details" element={<BlogDetailsPage />} /> */}
-        </Routes>
-      </WagmiConfig>
+     
+
+        <WagmiConfig config={wagmiConfig}>
+          <Routes>
+            {/* <Route path="/home-two" element={<Home />} /> */}
+            <Route path="/" element={<HomeTwo />} />
+            <Route path="terms-and-conditions" element={<Terms />} />
+            {/* <Route path="blog-details" element={<BlogDetailsPage />} /> */}
+          </Routes>
+        </WagmiConfig>
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+
     </>
   );
 }
