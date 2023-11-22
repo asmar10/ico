@@ -7,30 +7,21 @@ const ContactOne = () => {
   const info_items = [
     {
       icon: "fa-envelope",
-      content: (
-        <>
-          company@gmail.com <br /> infoweb@gmail.com
-        </>
-      ),
+      content: <>crnt369@gmail.com</>,
     },
     {
       icon: "fa-phone",
-      content: (
-        <>
-          +84 0977425031
-          <br /> +998 765 775 34
-        </>
-      ),
+      content: <>+90 542 133 1926</>,
     },
-    {
-      icon: "fa-map-marker-alt",
-      content: (
-        <>
-          State/province/area: <br />
-          Georgia 198
-        </>
-      ),
-    },
+    // {
+    //   icon: "fa-map-marker-alt",
+    //   content: (
+    //     <>
+    //       State/province/area: <br />
+    //       Georgia 198
+    //     </>
+    //   ),
+    // },
   ];
 
   return (

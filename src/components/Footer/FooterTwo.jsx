@@ -60,7 +60,7 @@ const FooterTwo = () => {
               <div className="col-lg-5">
                 <div className="copyright-text">
                   <p>
-                    Copyright &copy; 2023. All Rights Reserved Creationnetwork
+                    Copyright &copy; 2023. All Rights Reserved Creation Network
                   </p>
                 </div>
               </div>

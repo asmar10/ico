@@ -300,30 +300,43 @@ const HeaderTwo = () => {
                   <div className="social-links">
                     <ul className="clearfix">
                       <li>
-                        <Link to="#">
+                        <Link
+                          to="https://www.facebook.com/www.CreationNetworkAI/"
+                          target="_blank"
+                        >
                           <i className="fab fa-facebook-f"></i>
                         </Link>
                       </li>
                       <li>
-                        <Link to="#">
+                        <Link
+                          to="https://twitter.com/CRNTNetworkAI"
+                          target="_blank"
+                        >
                           <i className="fab fa-twitter"></i>
                         </Link>
                       </li>
                       <li>
-                        <Link to="#">
+                        <Link
+                          to="https://www.instagram.com/creation_network.ai/"
+                          target="_blank"
+                        >
                           <i className="fab fa-instagram"></i>
                         </Link>
                       </li>
+
                       {/* <li>
                         <Link to="#">
                           <i className="fab fa-linkedin-in"></i>
                         </Link>
-                      </li>
+                      </li>*/}
                       <li>
-                        <Link to="#">
-                          <i className="fab fa-youtube"></i>
+                        <Link
+                          to="https://www.pinterest.com/wwwcreationnetworkai/"
+                          target="_blank"
+                        >
+                          <i className="fab fa-pinterest"></i>
                         </Link>
-                      </li> */}
+                      </li>
                     </ul>
                   </div>
                 </nav>

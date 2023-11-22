@@ -67,12 +67,12 @@ const getTokenContract = async (signer = false, buyingWith) => {
 
 };
 
+
 const { ethereum } = window;
 
 
 
 export const IcoProvider = ({ children }) => {
-    const { sdk, connected, connecting, provider, chainId } = useSDK();
 
     const [isLoading, setLoading] = useState(false);
     const [currentAccount, setCurrentAccount] = useState(null);
@@ -89,8 +89,6 @@ export const IcoProvider = ({ children }) => {
     const [isStarted, setIsStarted] = useState(false);
 
 
-
-
     const connectWallet = async () => {
         try {
 
@@ -104,9 +102,9 @@ export const IcoProvider = ({ children }) => {
                     method: "eth_chainId",
                 });
 
-                if (chainId !== "0x7a69") {//Production CHANGE 0x38 BNB
+                if (chainId !== "0x38") {//Production CHANGE 0x38 BNB
                     const chainParams = {
-                        chainId: "0x7a69",//Production CHANGE 0x38 BNB
+                        chainId: "0x38",//Production CHANGE 0x38 BNB
                     };
 
                     await ethereum?.request({
@@ -151,9 +149,9 @@ export const IcoProvider = ({ children }) => {
                         method: "eth_chainId",
                     });
 
-                    if (chainId !== "0x7a69") {//Production CHANGE 0x38 BNB
+                    if (chainId !== "0x38") {//Production CHANGE 0x38 BNB
                         const chainParams = {
-                            chainId: "0x7a69",//Production CHANGE 0x38 BNB
+                            chainId: "0x38",//Production CHANGE 0x38 BNB
                         };
 
                         await ethereum?.request({
@@ -166,7 +164,7 @@ export const IcoProvider = ({ children }) => {
             }
             else {
 
-                toast.error("Please Install Metamask", {
+                toast.error("Connect Wallet", {
                     position: "top-center",
                     autoClose: 3000,
                     hideProgressBar: true,
@@ -299,7 +297,7 @@ export const IcoProvider = ({ children }) => {
 
     const checkIfReferralExists = async () => {
         try {
-            console.log(currentAccount && currentAccount)
+            // console.log(currentAccount && currentAccount)
             const check = await getReferralContract().referralCode(currentAccount)
             // console.log(check)
             setReferralCode(check)
@@ -311,7 +309,9 @@ export const IcoProvider = ({ children }) => {
     const getCurrentStage = async () => {
 
         try {
-            const currentTime = Math.floor(Date.now() / 1000)
+
+            const currentTime = Math.floor(Date.now() / 1000);
+
             const t1 = await getIcoContract().startTime();
             // console.log("here")
 
@@ -321,6 +321,8 @@ export const IcoProvider = ({ children }) => {
             const temp1 = parseInt(t1)
             const temp2 = parseInt(t2)
             const temp3 = parseInt(t3)
+
+            // console.log(currentTime, temp2)
 
 
             const sp1 = await getIcoContract().seedSalePrice();
@@ -338,9 +340,6 @@ export const IcoProvider = ({ children }) => {
             const Pm1 = await getIcoContract().presaleMinted();
             const Pa1 = await getIcoContract().preSaleAllocation();
 
-            // console.log(Ps1._hex)
-            // console.log(Pm1, Pa1)
-
             const PresalePrice = parseInt(Ps1)
             const PresaleMinted = parseInt(Pm1)
             const PresaleAllocation = parseInt(Pa1)
@@ -353,7 +352,9 @@ export const IcoProvider = ({ children }) => {
             const PublicsaleMinted = parseInt(Pum1)
             const PublicsaleAllocation = parseInt(Pua1)
 
-            console.log(temp3)
+            // console.log(currentTime >= temp3)
+
+            // console.log(temp3)
             setSeedSaleStartTime(parseInt(temp1))
             setPreSaleStartTime(parseInt(temp2))
             setPublicSaleStartTime(parseInt(temp3))
@@ -428,7 +429,7 @@ export const IcoProvider = ({ children }) => {
 
 
     return (
-        <IcoContext.Provider value={{ isStarted, setCurrentAccount, generateReferralCode, isWhitelisted, referralCode, isLoading, difference, seedSaleStartTime, preSaleStartTime, publicSaleStartTime, currentStageAllocation, currentStageMinted, stagePrice, currentStage, connectWallet, currentAccount, isWalletConnected, buyTokens }}>
+        <IcoContext.Provider value={{ getCurrentStage, isStarted, setCurrentAccount, generateReferralCode, isWhitelisted, referralCode, isLoading, difference, seedSaleStartTime, preSaleStartTime, publicSaleStartTime, currentStageAllocation, currentStageMinted, stagePrice, currentStage, connectWallet, currentAccount, isWalletConnected, buyTokens }}>
             {children}
         </IcoContext.Provider>
     )

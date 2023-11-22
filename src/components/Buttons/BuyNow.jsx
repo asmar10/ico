@@ -337,8 +337,7 @@ const BuyNow = (props) => {
                   <p className="mb-0 subtle-text"> ${price} = 1 CRNT</p>
                 </p>
                 <p className="mb-0 text-end subtle-text">
-                  You'll get:
-                  {(receivingTokens - receivingTokens * 0.1).toFixed(2)}
+                  {receivingTokens.toFixed(2)}
                   CRNT
                 </p>
                 <p className="mb-0 text-end subtle-text tnc2">
@@ -351,6 +350,9 @@ const BuyNow = (props) => {
                 <div className="d-flex align-items-center justify-content-between">
                   <p className="mb-0 subtle-text">Have a referral code? </p>
                   <ToggleButton on={hasReferral} setOnState={setHasReferral} />
+                </div>
+                <div className="d-flex align-items-center justify-content-between">
+                  <p className="mb-0 subtle-text">{} </p>
                 </div>
                 <div className={hasReferral ? "show-input" : "hide-input"}>
                   <input

@@ -29,6 +29,8 @@ const BannerTwo = () => {
       (currentStageAllocation && currentStageAllocation)) *
     100;
 
+  // let left = currentStageAllocation - currentStageMinted;
+
   return (
     <section className="banner-area-two" id="home">
       <div className="banner-bg-two"></div>
