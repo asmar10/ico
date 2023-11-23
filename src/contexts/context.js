@@ -102,9 +102,9 @@ export const IcoProvider = ({ children }) => {
                     method: "eth_chainId",
                 });
 
-                if (chainId !== "0x38") {//Production CHANGE 0x38 BNB
+                if (chainId !== "0x539") {//Production CHANGE 0x539 BNB
                     const chainParams = {
-                        chainId: "0x38",//Production CHANGE 0x38 BNB
+                        chainId: "0x539",//Production CHANGE 0x539 BNB
                     };
 
                     await ethereum?.request({
@@ -149,9 +149,9 @@ export const IcoProvider = ({ children }) => {
                         method: "eth_chainId",
                     });
 
-                    if (chainId !== "0x38") {//Production CHANGE 0x38 BNB
+                    if (chainId !== "0x539") {//Production CHANGE 0x539 BNB
                         const chainParams = {
-                            chainId: "0x38",//Production CHANGE 0x38 BNB
+                            chainId: "0x539",//Production CHANGE 0x539 BNB
                         };
 
                         await ethereum?.request({
